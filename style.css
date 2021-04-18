@@ -1,0 +1,17 @@
+form input[type=submit] {
+	width: 30%;
+	margin: 0 auto;
+	background: #3a99ff;
+	color: white;
+}
+form input {
+	display: block;
+	width: 100%;
+	padding: 5px;
+	margin-bottom: 9px;
+	border-radius: 7px;
+	border: 0;
+}
+#bait {
+	display: none;
+}

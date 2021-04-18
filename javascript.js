@@ -51,3 +51,8 @@ function Register(){
     });
     //alert("user doesn't exist");
 }
+
+function ScrollToBottom(element){
+    var d = $(element);
+    d.scrollTop(d.prop("scrollHeight"));
+}

@@ -13,14 +13,20 @@
                 <?php GenerateMultiplePersons(10); ?>
             </div>
         </nav>
-        <section class="messagelist">
-            <header>
-
-            </header>
+        <section id="rightpanel" class="messagelist">
+            <section>
             <?= GenerateMultiple("Message", 20) ?>
+            </section>
+            <div>
+                <span class="textfield"><textarea></textarea></span>
+            </div>
         </section>
     </main>
-    
+    <script>
+        $(document).ready(function() {
+            ScrollToBottom("#rightpanel");
+        });  
+    </script>
     <?php
     PageFooter();
 ?>

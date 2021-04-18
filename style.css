@@ -1,3 +1,10 @@
+* {
+	font-family: 'Roboto', sans-serif;
+	scrollbar-width: none;
+}
+body {
+	margin: 0;
+}
 form input[type=submit] {
 	width: 30%;
 	margin: 0 auto;
@@ -14,4 +21,78 @@ form input {
 }
 #bait {
 	display: none;
+}
+main {
+	height: 100vh;
+	display: grid;
+	grid-template-columns: 350px auto;
+}
+nav {
+	height: 100%;
+	background: #7F56C3;
+	overflow-y: scroll;
+	scroll-behavior: smooth;	
+}
+section {
+	height: 100%;
+}
+nav header {
+	background: #6D44BA;
+	height: 70px;
+}
+::-webkit-scrollbar {
+	display: none;
+}
+.chatphoto {
+	height: 70px;
+	border-radius: 50%;
+	width: 70px;
+	object-fit: cover;
+	align-self: center;
+}
+.chatroom {
+	display: grid;
+	padding: 10px;
+	grid-template-columns: 80px auto;
+	height: 85px;
+}
+.chatroom:hover {
+	background: #5F35A7;
+	cursor: pointer;
+}
+.chatlist {
+	color: white;	
+}
+.chatroom h3 {
+	align-self: center;
+}
+i {
+	color: white;
+}
+header {
+	display: grid;
+	grid-template-columns: 70px auto auto 70px;
+}
+header i {
+	color: #f2f2f2;
+	align-self: center;
+	text-align: center;
+	font-size: 24px;
+}
+.message {
+	display: block;
+	background: #7F56C3;
+	color: white;
+	width: max-content;
+	padding: 13px;
+	margin: 10px;
+	border-radius: 10px;
+}
+.user {
+	margin-right: 10px;
+	margin-left: auto;
+}
+.messagelist {
+	overflow-y: scroll;
+	scroll-behavior: smooth;
 }

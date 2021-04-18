@@ -1,6 +1,10 @@
 function ReloadPageContent(){
     $(".jquery-modal").remove();
-    $("#body").load(location.href + " #body");
+    $("#body").load(location.href + " #body");   
+}
+
+function ReloadPage(){
+    location.reload();
 }
 
 function Logout(){
@@ -20,7 +24,7 @@ function Login(){
     },
     function(data) {
         if(data == 1){
-            ReloadPageContent();
+            ReloadPage();
         } else {
             alert("Nesprávné přihlašovací údaje");
         }        
@@ -38,8 +42,9 @@ function Register(){
         password : password
     },
     function(data) {
+        alert(data);
         if(data == 1){
-            ReloadPageContent();
+            ReloadPage();
         } else {
             alert("Email je již zaregistrován");
         }        

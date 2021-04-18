@@ -35,16 +35,19 @@ function GetCurrentUser(){
 
 function LoginUser($email, $password){
     $user = GetUser($email);
-    if(password_verify($password, $user["password"])){
-        return true;
-    }
-    return false;
+    return password_verify($password, $user["password"]);
 }
 
 function RegisterUser($email, $nick, $password){
+    global $db;
     if(CheckIfUserExists($email)){
         return false;
     }
+    $sql = $db->prepare("insert into user values (?,?,?,0)");
+    if($sql->execute([$email, $nick, HashPassword($password)])){
+        return true;
+    }
+    return false;
 }
 
 function CheckIfUserExists($email){

@@ -56,3 +56,14 @@ function ScrollToBottom(element){
     var d = $(element);
     d.scrollTop(d.prop("scrollHeight"));
 }
+
+function EmojiMenu(){
+    for(x = 128512; x <= 128591; x++){
+        $("#emojimenu").append("<span onclick='AppendEmoji(" + x + ")'>&#" + x + "</span>");
+    }   
+}
+
+function AppendEmoji(code){
+    emoji = String.fromCodePoint(code);
+    $("#textarea").val($("#textarea").val() + emoji);
+}

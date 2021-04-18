@@ -73,11 +73,15 @@ header {
 	display: grid;
 	grid-template-columns: 70px auto auto 70px;
 }
-header i {
+a {
 	color: #f2f2f2;
 	align-self: center;
 	text-align: center;
 	font-size: 24px;
+}
+i:hover {
+	color: #5F35A7;
+	cursor: pointer;
 }
 .message {
 	display: block;
@@ -110,9 +114,21 @@ textarea {
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	resize: none;
-	height: 100px;
+	height: 40px;
 	border: 0;
 	width: 100%;
-	border-radius: 20px;
+	border-radius: 15px;
 	padding: 10px;
+}
+#rightpanel div {
+	display: grid;
+	grid-template-columns: auto 100px;
+	background: #cfb9f2;
+}
+#emojimenu span {
+	font-size: 24px;
+}
+#emojimenu span:hover {
+	cursor: pointer;
+	background: gray;
 }

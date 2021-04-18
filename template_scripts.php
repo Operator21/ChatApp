@@ -11,18 +11,6 @@ function GenerateMultiple($func, $num){
     }
 }
 
-function GenerateMultiplePersons($num){
-    for($x = 0; $x < $num; $x++){
-        ChatRoom();
-    }
-}
-
-function GenerateMultipleMessages($num){
-    for($x = 0; $x < $num; $x++){
-        Message();
-    }
-}
-
 function PageHeader($title = "Nadpis stránky"){
     ?>
     <!DOCTYPE html>

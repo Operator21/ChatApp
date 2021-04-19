@@ -31,6 +31,8 @@ function PageHeader($title = "Nadpis stránky"){
             <title><?= $title ?> | ChatApp</title>
             <!-- General style file -->
             <link rel="stylesheet" href="style.css">
+            <!-- Mobile style file -->
+            <link rel="stylesheet" href="style_mobile.css">
             <!-- General script functions -->
             <script src="javascript.js"></script>
             <!-- Font Awesome link -->

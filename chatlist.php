@@ -40,7 +40,11 @@
 <div id="userlist" class="modal"></div>
 <script>
     $("#rightpanel").ready(function() {
-        ScrollToBottom("#rightpanel");
+        let searchParams = new URLSearchParams(window.location.search)
+        if(searchParams.has("chatid")){
+            ScrollToBottom("#rightpanel");
+            $('#textarea').focus();
+        }
         EmojiMenu();
     });  
 
@@ -60,6 +64,9 @@
         RefreshMessages();
     }, 3000);
 
-    $('#textarea').focus();
+    window.onpopstate = function(){
+        document.location = window.location.pathname;
+    };
+    history.pushState({}, "");
 </script>
 

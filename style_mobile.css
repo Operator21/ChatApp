@@ -1,0 +1,29 @@
+@media (max-width: 1000px){
+    .welcome {
+        width: 100%;
+    }
+    .splitter {
+        display: block;
+    }
+    .welcome img {
+        display: none;
+    }
+    .width-250 {
+        margin: 0 auto;
+        width: 70%;
+    }
+    .signindiv {
+        width: 70%;
+        margin: 0 auto;
+    }
+    .main {
+        display: block;
+    }
+    body {
+        scroll-behavior: none;
+        overflow-y: hidden;
+    }
+    nav {
+        overflow-y: hidden;
+    }
+}

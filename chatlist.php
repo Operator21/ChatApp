@@ -12,7 +12,7 @@
 
             $chatrooms = GetUserChatRooms();
             foreach($chatrooms as $room){
-                ChatRoom($room["chat_id"], $room["chat_id"]);
+                ChatRoom($room["chat_id"], $room["chat_id"], "img/default.jpg");
             }
         ?>
         </div>
@@ -46,11 +46,13 @@
 
     $("#textarea").keydown(function(event){
         if(event.which == 13){
-            event.preventDefault();    
-            let searchParams = new URLSearchParams(window.location.search)
-            //alert(searchParams.get("chatid") + " / " + $("#textarea").val());
-            SendMessage(searchParams.get("chatid"), $("#textarea").val());   
-            RefreshMessages();
+            event.preventDefault(); 
+            if($("#textarea").val() != ""){
+                let searchParams = new URLSearchParams(window.location.search)
+                //alert(searchParams.get("chatid") + " / " + $("#textarea").val());
+                SendMessage(searchParams.get("chatid"), $("#textarea").val());   
+                RefreshMessages();
+            }
         }
     });
 

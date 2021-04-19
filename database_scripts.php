@@ -106,10 +106,29 @@ function GetUsersLike($nick){
 function CheckIfUserInChat($chatid){
     global $db;
     $userid = GetCurrentUserID();
-    $sql = $db->prepare("select count(*) as num from user_in_chat where chat_id = $chatid and user_id = $userid");
+    $sql = $db->prepare("select count(*) as num from user_in_chat where chat_id = ? and user_id = ?");
+    $sql->execute([$chatid, $userid]);
     $num = $sql->fetch(PDO::FETCH_ASSOC)["num"];
     if($num > 0){
         return true;
     }
     return false;
+}
+
+function CreateChat($selected){
+    global $db;
+    try {
+        $sql = $db->prepare("insert into chat values (null)");
+        $sql->execute();
+        $chatid = $db->lastInsertId();
+    
+        $sql = $db->prepare("insert into user_in_chat values (?,?)");
+        $sql->execute([$chatid, $selected]);
+        $sql->execute([$chatid, GetCurrentUserID()]);
+
+        return $chatid;
+    } catch (PDOException $e){
+        return false;
+    }
+    
 }

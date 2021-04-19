@@ -8,7 +8,7 @@ inputs = [
 ];
 
 function ReloadPageContent(){
-    $(".jquery-modal").remove();
+    $.modal.close();
     $("#body").load(location.href + " #body");   
 }
 
@@ -65,7 +65,7 @@ function Register(){
 
 function ScrollToBottom(element){
     var d = $(element);
-    d.scrollTop(d.prop("scrollHeight"));
+    d.scrollTop(d.height());
 }
 
 function EmojiMenu(){
@@ -87,6 +87,12 @@ function OpenChat(id) {
 
 function RefreshMessages(){
     $("#messagelist").load(location.href + " #messagelist");
+    //console.log($("#messagelist").height());
+
+    /*if($(window).height() < height){
+        console.log("   posun");
+        ScrollToBottom("#rightpanel");
+    }*/
 }
 
 function SendMessage(chatid, content){
@@ -123,4 +129,18 @@ function SearchUsers(){
     } else {
         alert("Musíte nejdříve zadat uživatele");
     }
+}
+
+function StartChat(selected){
+    if(selected != null)
+    $.post("script_newchat.php", {
+        selected: selected
+    },
+    function(data) {
+        //alert(data);   
+        $.modal.close();
+        if(data > 0){
+            OpenChat(data);
+        }
+    });
 }

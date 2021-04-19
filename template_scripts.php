@@ -67,18 +67,9 @@ function UserProfile($user){
     <?php
 }
 function Message($currentuser = null, $user = null, $content = null){
-    global $messages;
     $class = "message";
     if($currentuser != null && $user == $currentuser){
         $class .= " user";
-    } else {
-        if(rand(0,1) == 1){
-            $class .= " user";
-        }
-    }
-    
-    if($content == null){
-        $content = RandomFromArray($messages);
     }
     ?>
     <span class="<?= $class ?>"><?= $content ?></span>

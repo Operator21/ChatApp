@@ -82,7 +82,6 @@ function AppendEmoji(code){
 function OpenChat(id) {
     //alert(id);
     var url = window.location.pathname +"?chatid=" + id;
-    //$("#messagelist").load(location.href + " #messageslist");
     document.location = url;
 }
 
@@ -96,7 +95,7 @@ function SendMessage(chatid, content){
         content : content
     },
     function(data) {
-        alert(data);   
+        //alert(data);   
         $("#textarea").val("");
         RefreshMessages(); 
     });
@@ -106,4 +105,22 @@ function ResetInputs(){
     inputs.forEach(input => {
         $(input).val("");
     });
+}
+
+function SearchUsers(){
+    input = $("#usersearch").val();
+    //input.length
+    if(input != ""){
+        $.post("script_search.php", {
+            search: input
+        },
+        function(data) {
+            //alert(data);   
+            $("#userlist").html(data);
+            $("#usersearch").val("");
+            $("#userlist").modal();
+        });
+    } else {
+        alert("Musíte nejdříve zadat uživatele");
+    }
 }

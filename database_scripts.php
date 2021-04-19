@@ -3,22 +3,20 @@ function HashPassword($password){
     return password_hash($password, PASSWORD_DEFAULT);
 }
 
-function GetFromTable($table, $id = null, $identifier = "id"){
+function GetFromTable($table, $id = null, $identifier = "id", $operator = "=", $mode = "single"){
     global $db;
     if($id != null){
-        /*$sql = $db->prepare("SHOW KEYS FROM $table WHERE Key_name = 'PRIMARY'");
-        $sql->execute();
-        $identifier = $sql->fetch(PDO::FETCH_ASSOC)["Column_name"];*/
-        //print_r($identifier);
-
-        $sql = $db->prepare("select * from $table where $identifier = ?");
+        $sql = $db->prepare("select * from $table where $identifier $operator ?");
         $sql->execute([$id]);
-        //print_r($db->errorInfo());
+        //print_r($db->errorInfo());   
+        if($mode == "multiple"){
+            return $sql->fetchAll(PDO::FETCH_ASSOC);
+        }
         return $sql->fetch(PDO::FETCH_ASSOC);
     } else {
         $sql = $db->prepare("select * from $table");
         $sql->execute();
-        return $sql->fetchAll();
+        return $sql->fetchAll(PDO::FETCH_ASSOC);
     }   
 }
 
@@ -54,7 +52,7 @@ function RegisterUser($email, $nick, $password){
     if(CheckIfUserExists($email)){
         return false;
     }
-    $sql = $db->prepare("insert into user values (0,?,?,?,0)");
+    $sql = $db->prepare("insert into (email, nick, password) user values (?,?,?)");
     if($sql->execute([$email, $nick, HashPassword($password)])){
         return true;
     }
@@ -96,6 +94,21 @@ function SendMessage($chatid, $content){
     $datetime = new DateTime("now");
     $sql = $db->prepare("insert into message values (0,?,?,?,?)");
     if($sql->execute([GetCurrentUserID(), $chatid, $content, $datetime->format("Y-m-d H:i:s")])){
+        return true;
+    }
+    return false;
+}
+
+function GetUsersLike($nick){
+    return GetFromTable("user", "%$nick%", "nick",  "like", "multiple");
+}
+
+function CheckIfUserInChat($chatid){
+    global $db;
+    $userid = GetCurrentUserID();
+    $sql = $db->prepare("select count(*) as num from user_in_chat where chat_id = $chatid and user_id = $userid");
+    $num = $sql->fetch(PDO::FETCH_ASSOC)["num"];
+    if($num > 0){
         return true;
     }
     return false;

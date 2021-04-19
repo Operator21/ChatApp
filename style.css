@@ -37,10 +37,6 @@ nav {
 section {
 	height: 100%;
 }
-nav header {
-	background: #6D44BA;
-	height: 70px;
-}
 ::-webkit-scrollbar {
 	display: none;
 }
@@ -69,19 +65,23 @@ nav header {
 }
 i {
 	color: white;
+	transition-property: color;
+	transition-duration: 0.5s;
 }
 header {
+	background: #6D44BA;
+	height: 50px;
 	display: grid;
-	grid-template-columns: 70px auto auto 70px;
+	grid-template-columns: 40px auto 40px;
 }
 a {
 	color: #f2f2f2;
 	align-self: center;
 	text-align: center;
-	font-size: 24px;
+	font-size: 24px;	
 }
 i:hover {
-	color: #5F35A7;
+	color: #a7a7a7;
 	cursor: pointer;
 }
 .message {
@@ -173,6 +173,8 @@ img {
 	display: block;
 	margin: 5px;
 	border-radius: 13px;
+	transition-property: background;
+	transition-duration: 0.5s;
 }
 .button:hover{
 	background: #9167d6;
@@ -182,4 +184,32 @@ footer {
 }
 form h4 {
 	margin-bottom: 18px;
+}
+#usersettings {
+	text-align: center;
+}
+#usersettings img {
+	width: 150px;
+	height: 150px;
+	object-fit: cover;
+	border-radius: 75px;
+	margin: 0 auto;
+	display: block;
+	transition-property: opacity;
+	transition-duration: 0.5s;
+}
+#usersettings img:hover {
+	cursor: pointer;
+	opacity: 0.5;
+}
+#usersettings .button {
+	margin-top: 20px;
+}
+#usersearch {
+	background: #7752bd;
+	border: 0;
+	font-size: 20px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	color: white;
 }

@@ -58,6 +58,14 @@ function ChatRoom($id = 0, $name = "", $photo= ""){
     </span>
     <?php
 }
+function UserProfile($user){ 
+    ?>
+    <span class="chatroom" onclick="StartChat(<?= $user["id"] ?>)">
+        <img class="chatphoto" src="<?= $user["avatar"] ?>">
+        <h3><?= $user["nick"] ?></h3>
+    </span>
+    <?php
+}
 function Message($currentuser = null, $user = null, $content = null){
     global $messages;
     $class = "message";

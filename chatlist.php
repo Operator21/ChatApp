@@ -2,27 +2,26 @@
 <main class="main">
     <nav>
         <header>
-            <a><i class="fas fa-search"></i></a>          
-            <span></span> 
-            <span></span> 
+            <a onclick="SearchUsers()"><i class="fas fa-search"></i></a> 
+            <input type="text" id="usersearch" placeholder="Vyhledat uživatele">               
             <a href="#usersettings" rel="modal:open"><i class="fas fa-user"></i></a>           
         </header>
         <div class="chatlist">
         <?php 
-            GenerateMultiple("ChatRoom", 10); 
+            //GenerateMultiple("ChatRoom", 10); 
 
-            /*$chatrooms = GetUserChatRooms();
+            $chatrooms = GetUserChatRooms();
             foreach($chatrooms as $room){
                 ChatRoom($room["chat_id"], $room["chat_id"]);
-            }*/
+            }
         ?>
         </div>
     </nav>
     <section id="rightpanel" class="messagelist">
         <section id="messagelist">
         <?php 
-            GenerateMultiple("Message", 20) 
-            //include_once("script_getmessages.php");
+            //GenerateMultiple("Message", 20) 
+            include_once("script_getmessages.php");
         ?>
         </section>
         <div class="inputdiv">
@@ -38,6 +37,7 @@
     include_once("usermenu.php");
 ?>
 </div>
+<div id="userlist" class="modal"></div>
 <script>
     $("#rightpanel").ready(function() {
         ScrollToBottom("#rightpanel");
@@ -56,7 +56,7 @@
 
     setInterval(function() {
         RefreshMessages();
-    }, 1000);
+    }, 3000);
 
     $('#textarea').focus();
 </script>

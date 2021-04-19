@@ -54,19 +54,19 @@ function RegisterUser($email, $nick, $password){
     if(CheckIfUserExists($email)){
         return false;
     }
-    $sql = $db->prepare("insert into user values (?,?,?,0)");
+    $sql = $db->prepare("insert into user values (0,?,?,?,0)");
     if($sql->execute([$email, $nick, HashPassword($password)])){
         return true;
     }
     return false;
 }
 
-function CheckIfUserExists($id){
-    if(!isset($id)){
+function CheckIfUserExists($email){
+    if(!isset($email)){
         return false;
     }
     
-    if(GetUser($id) != null){
+    if(GetUserByEmail($email) != null){
         return true;
     }
     return false;

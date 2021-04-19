@@ -53,7 +53,7 @@ function Register(){
         password : password
     },
     function(data) {
-        alert(data);
+        //alert(data);
         if(data == 1){
             ReloadPage();
         } else {

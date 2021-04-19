@@ -1,14 +1,13 @@
 <?php
-require("connection.php");
+require_once("connection.php");
 require_once("template_scripts.php");
 
 PageHeader("ChatApp");
-if(!isset($_SESSION["email"])){
-    include_once("form_login.php");
-    include_once("form_register.php");
+if(!isset($_SESSION["user"])){
+    include_once("welcomepage.php");   
 } else {
     $user = GetCurrentUser();
-    include_once("form_logout.php");
+    include_once("chatlist.php");
 }
 
 

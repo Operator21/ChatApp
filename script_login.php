@@ -5,7 +5,7 @@ if(!isset($_POST["email"], $_POST["password"])){
 
 require_once("connection.php");
 if(LoginUser($_POST["email"], $_POST["password"])) {
-    $_SESSION["email"] = $_POST["email"];
+    $_SESSION["user"] = GetUserByEmail($_POST["email"])["id"];
     die("1");
 } else {
     die("0");

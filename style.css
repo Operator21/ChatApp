@@ -1,5 +1,6 @@
 * {
 	font-family: 'Roboto', sans-serif;
+	margin: 0;
 	scrollbar-width: none;
 }
 body {
@@ -8,7 +9,7 @@ body {
 form input[type=submit] {
 	width: 30%;
 	margin: 0 auto;
-	background: #3a99ff;
+	background: #7F56C3;
 	color: white;
 }
 form input {
@@ -22,7 +23,7 @@ form input {
 #bait {
 	display: none;
 }
-main {
+.main {
 	height: 100vh;
 	display: grid;
 	grid-template-columns: 350px auto;
@@ -102,7 +103,7 @@ i:hover {
 }
 #rightpanel {
 	display: grid;
-	grid-template-rows: auto auto;
+	grid-template-rows: auto 64px;
 }
 .textfield {
 	padding: 10px;
@@ -131,4 +132,54 @@ textarea {
 #emojimenu span:hover {
 	cursor: pointer;
 	background: gray;
+}
+.width-250 {
+	width: 250px;
+}
+.welcome {
+	display: grid;
+	grid-template-rows: 95% auto;
+	width: 1000px;
+	margin: 0 auto;
+	height: 100vh;
+}
+.welcome h4 {
+	color: #bdbdbd;
+}
+.welcome h1 {
+	font-size: 50px;
+	background: -webkit-linear-gradient(#9267d8, #6D44BA);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+img {
+	width: 100%;
+}
+.splitter {
+	display: grid;
+	grid-template-columns: 40% auto;
+	width: 100%;
+	height: max-content;
+	align-self: center;
+}
+.button {
+	color: #f2f2f2;
+	align-self: center;
+	text-align: center;
+	font-size: 24px;
+	background: #7F56C3;
+	text-decoration: none;
+	padding: 10px;
+	display: block;
+	margin: 5px;
+	border-radius: 13px;
+}
+.button:hover{
+	background: #9167d6;
+}
+footer {
+	text-align: center;
+}
+form h4 {
+	margin-bottom: 18px;
 }

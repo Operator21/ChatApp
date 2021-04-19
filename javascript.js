@@ -1,3 +1,12 @@
+inputs = [
+    "registerEmail",
+    "registerNick",
+    "registerPassword",
+    "registerPasswordCheck",
+    "loginEmail",
+    "loginPassword"
+];
+
 function ReloadPageContent(){
     $(".jquery-modal").remove();
     $("#body").load(location.href + " #body");   
@@ -10,6 +19,7 @@ function ReloadPage(){
 function Logout(){
     $.post("script_logout.php", function(data) {
         //alert(data);
+        ResetInputs();
         ReloadPageContent();
     });
 }
@@ -23,6 +33,7 @@ function Login(){
         password : password
     },
     function(data) {
+        //alert(data);
         if(data == 1){
             ReloadPage();
         } else {
@@ -66,4 +77,33 @@ function EmojiMenu(){
 function AppendEmoji(code){
     emoji = String.fromCodePoint(code);
     $("#textarea").val($("#textarea").val() + emoji);
+}
+
+function OpenChat(id) {
+    //alert(id);
+    var url = window.location.pathname +"?chatid=" + id;
+    //$("#messagelist").load(location.href + " #messageslist");
+    document.location = url;
+}
+
+function RefreshMessages(){
+    $("#messagelist").load(location.href + " #messagelist");
+}
+
+function SendMessage(chatid, content){
+    $.post("script_newmessage.php", {
+        chatid : chatid,
+        content : content
+    },
+    function(data) {
+        alert(data);   
+        $("#textarea").val("");
+        RefreshMessages(); 
+    });
+}
+
+function ResetInputs(){
+    inputs.forEach(input => {
+        $(input).val("");
+    });
 }

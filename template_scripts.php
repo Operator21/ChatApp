@@ -49,21 +49,26 @@ function PageFooter(){
     <?php
 }
 
-function ChatRoom(){
+function ChatRoom($id = 0, $name = "", $photo= ""){
     global $names, $photos;    
     ?>
-    <span class="chatroom">
-        <img class="chatphoto" src="<?= RandomFromArray($photos) ?>">
-        <h3><?= RandomFromArray($names) ?></h3>
+    <span class="chatroom" onclick="OpenChat(<?= $id ?>)">
+        <img class="chatphoto" src="<?= ($photo == "") ? RandomFromArray($photos) : $photo ?>">
+        <h3><?= ($name == "") ? RandomFromArray($names) : $name ?></h3>
     </span>
     <?php
 }
-function Message($content = null){
+function Message($currentuser = null, $user = null, $content = null){
     global $messages;
     $class = "message";
-    if(rand(0,1) == 1){
+    if($currentuser != null && $user == $currentuser){
         $class .= " user";
+    } else {
+        if(rand(0,1) == 1){
+            $class .= " user";
+        }
     }
+    
     if($content == null){
         $content = RandomFromArray($messages);
     }

@@ -17,6 +17,7 @@ function ReloadPage(){
 }
 
 function Logout(){
+    //alert(data);
     $.post("script_logout.php", function(data) {
         //alert(data);
         ResetInputs();
@@ -145,3 +146,29 @@ function StartChat(selected){
     });
 }
 
+function ChangeAvatar(){
+    $("#changeavatar").modal();
+}
+
+function RefreshPreview(){
+    $("#preview").attr('src' , $("#imageurl").val());
+}
+
+function SaveAvatar(){
+    url = $("#imageurl").val();
+    if(url.length < 1){
+        alert("URL nesmí být prázdná");
+        return;
+    }
+    $.post("script_updateavatar.php", {
+        url: url
+    },
+    function(data) {
+        //alert(data);
+        if(data > 0) {
+            ReloadPage();
+        } else{
+            alert("Uložení se nezdařilo, ujistěte se, že odkaz není příliš dlouhý");
+        }    
+    });
+}

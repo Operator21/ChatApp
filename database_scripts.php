@@ -42,6 +42,18 @@ function GetCurrentUserID(){
     return null;
 }
 
+function GetAllChatRoomsWithoutCurrentUser(){
+    global $db;
+    $sql = $db->prepare("SELECT userchat.chat_id, GROUP_CONCAT(user.nick ORDER BY user.nick SEPARATOR ', ') AS users 
+    FROM (SELECT chat_id FROM user_in_chat WHERE user_id = 1) userchat
+    JOIN user_in_chat ON userchat.chat_id = user_in_chat.chat_id
+    JOIN user ON user.id = user_id
+        AND user.id != ?
+    GROUP BY userchat.chat_id");
+    $sql->execute([GetCurrentUserID()]);
+    return $sql->fetchAll(PDO::FETCH_ASSOC);
+}
+
 function LoginUser($email, $password){
     $user = GetUserByEmail($email, "email");
     return password_verify($password, $user["password"]);
@@ -52,8 +64,8 @@ function RegisterUser($email, $nick, $password){
     if(CheckIfUserExists($email)){
         return false;
     }
-    $sql = $db->prepare("insert into (email, nick, password) user values (?,?,?)");
-    if($sql->execute([$email, $nick, HashPassword($password)])){
+    $sql = $db->prepare("insert into user (email, nick, password) values (?,?,?)");
+    if($sql->execute([$email, $nick, HashPassword($password)])){       
         return true;
     }
     return false;
@@ -131,4 +143,10 @@ function CreateChat($selected){
         return false;
     }
     
+}
+
+function UpdateAvatar($newurl){
+    global $db;
+    $sql = $db->prepare("update user set avatar = ? where id = ?");
+    return $sql->execute([$newurl, GetCurrentUserID()]);
 }

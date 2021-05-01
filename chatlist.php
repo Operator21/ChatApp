@@ -10,9 +10,9 @@
         <?php 
             //GenerateMultiple("ChatRoom", 10); 
 
-            $chatrooms = GetUserChatRooms();
+            $chatrooms = GetAllChatRoomsWithoutCurrentUser();
             foreach($chatrooms as $room){
-                ChatRoom($room["chat_id"], $room["chat_id"], "img/default.jpg");
+                ChatRoom($room["chat_id"], $room["users"], "img/default.jpg");
             }
         ?>
         </div>
@@ -38,6 +38,11 @@
 ?>
 </div>
 <div id="userlist" class="modal"></div>
+<form id="changeavatar" class="modal">
+<?php
+    include_once("changeavatar.php");
+?>
+</form>
 <script>
     $("#rightpanel").ready(function() {
         let searchParams = new URLSearchParams(window.location.search)
@@ -64,9 +69,12 @@
         RefreshMessages();
     }, 3000);
 
-    window.onpopstate = function(){
+    $("#preview").onerror = function(){
+        $("#preview").attr('src' , "img/notfound.jpg");
+    }
+    /*window.onpopstate = function(){
         document.location = window.location.pathname;
     };
-    history.pushState({}, "");
+    history.pushState({}, "");*/
 </script>
 

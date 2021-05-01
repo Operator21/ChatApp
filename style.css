@@ -174,10 +174,11 @@ img {
 	margin: 5px;
 	border-radius: 13px;
 	transition-property: background;
-	transition-duration: 0.5s;
+	transition-duration: 0.5s;	
 }
 .button:hover{
 	background: #9167d6;
+	cursor: pointer;
 }
 footer {
 	text-align: center;
@@ -188,7 +189,7 @@ form h4 {
 #usersettings {
 	text-align: center;
 }
-#usersettings img {
+#usersettings img, #changeavatar img {
 	width: 150px;
 	height: 150px;
 	object-fit: cover;
@@ -197,6 +198,7 @@ form h4 {
 	display: block;
 	transition-property: opacity;
 	transition-duration: 0.5s;
+	margin-bottom: 10px;
 }
 #usersettings img:hover {
 	cursor: pointer;
@@ -212,6 +214,7 @@ form h4 {
 	margin-top: 10px;
 	margin-bottom: 10px;
 	color: white;
+	padding-left: 7px;
 }
 .signindiv {
 	margin-top: 40px;

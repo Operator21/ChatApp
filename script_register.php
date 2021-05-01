@@ -8,5 +8,6 @@ require_once("connection.php");
 if(RegisterUser($_POST["email"], $_POST["nick"], $_POST["password"])) {
     die("1");
 } else {
+    print_r($db->errorInfo());
     die("0");
 }

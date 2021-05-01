@@ -45,12 +45,12 @@ function GetCurrentUserID(){
 function GetAllChatRoomsWithoutCurrentUser(){
     global $db;
     $sql = $db->prepare("SELECT userchat.chat_id, GROUP_CONCAT(user.nick ORDER BY user.nick SEPARATOR ', ') AS users 
-    FROM (SELECT chat_id FROM user_in_chat WHERE user_id = 1) userchat
-    JOIN user_in_chat ON userchat.chat_id = user_in_chat.chat_id
-    JOIN user ON user.id = user_id
-        AND user.id != ?
-    GROUP BY userchat.chat_id");
-    $sql->execute([GetCurrentUserID()]);
+        FROM (SELECT chat_id FROM user_in_chat WHERE user_id = ?) userchat
+        JOIN user_in_chat ON userchat.chat_id = user_in_chat.chat_id
+        JOIN user ON user.id = user_id
+            AND user.id != ?
+        GROUP BY userchat.chat_id");
+    $sql->execute([GetCurrentUserID(),GetCurrentUserID()]);
     return $sql->fetchAll(PDO::FETCH_ASSOC);
 }
 
@@ -149,4 +149,14 @@ function UpdateAvatar($newurl){
     global $db;
     $sql = $db->prepare("update user set avatar = ? where id = ?");
     return $sql->execute([$newurl, GetCurrentUserID()]);
+}
+
+function GetChatAvatar($chatid){
+    global $db;
+    $sql = $db->prepare("SELECT avatar FROM user_in_chat
+        JOIN user ON user.id = user_id
+        WHERE user.id != ? AND chat_id = ? 
+        ORDER BY user.id asc LIMIT 1;");
+    $sql->execute([GetCurrentUserID(), $chatid]);
+    return $sql->fetch(PDO::FETCH_ASSOC)["avatar"];    
 }

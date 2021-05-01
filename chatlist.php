@@ -12,7 +12,7 @@
 
             $chatrooms = GetAllChatRoomsWithoutCurrentUser();
             foreach($chatrooms as $room){
-                ChatRoom($room["chat_id"], $room["users"], "img/default.jpg");
+                ChatRoom($room["chat_id"], $room["users"], GetChatAvatar($room["chat_id"]));
             }
         ?>
         </div>

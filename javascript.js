@@ -47,7 +47,16 @@ function Register(){
     email = $("#registerEmail").val();
     nick = $("#registerNick").val();
     password = $("#registerPassword").val();
+    passwordAgain = $("#registerPasswordCheck").val();
 
+    if(email.length < 1 || nick.length < 1 || password.length < 1){
+        alert("Je nutné vyplnit všechny údaje");
+        return;
+    }
+    if(passwordAgain != password){
+        alert("Hesla se neshodují");
+        return;
+    }
     $.post("script_register.php", {
         email : email,
         nick : nick,

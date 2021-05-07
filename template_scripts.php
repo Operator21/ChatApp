@@ -30,7 +30,8 @@ function PageHeader($title = "Nadpis stránky"){
             <!-- Page title in  format of *Current Page | ChatApp* -->           
             <title><?= $title ?> | ChatApp</title>
             <!-- Color Palette -->
-            <link rel="stylesheet" href="colors/default.css">
+            <!-- <link rel="stylesheet" href="colors/default.css"> -->
+            <link rel="stylesheet" href="colors/sienna.css">
             <!-- General style file -->
             <link rel="stylesheet" href="style.css">
             <!-- Mobile style file -->

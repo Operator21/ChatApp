@@ -54,9 +54,13 @@ function PageFooter(){
 }
 
 function ChatRoom($id = 0, $name = "", $photo= ""){
-    global $names, $photos;    
+    global $names, $photos;   
+    $class = "";
+    if(isset($_GET["chatid"]) && $id == $_GET["chatid"]){
+        $class = "selected";
+    } 
     ?>
-    <span class="chatroom" onclick="OpenChat(<?= $id ?>)">
+    <span class="chatroom <?= $class ?>" onclick="OpenChat(<?= $id ?>)">
         <img class="chatphoto" src="<?= ($photo == "") ? RandomFromArray($photos) : $photo ?>">
         <h3><?= ($name == "") ? RandomFromArray($names) : $name ?></h3>
     </span>
@@ -64,14 +68,17 @@ function ChatRoom($id = 0, $name = "", $photo= ""){
 }
 function UserProfile($user, $chatid){ 
     ?>
-    <span class="chatroom" onclick="StartChat(<?= $user["id"] ?>)">
+    <span class="chatroom">
         <img class="chatphoto" src="<?= $user["avatar"] ?>">
         <h3><?= $user["nick"] ?></h3>
-        <?php if($chatid != -1) { ?>
-        <span>
-            <i class="fas fa-user-plus"></i>
+        
+        <span class="useroptions">
+            <i class="fas fa-user-plus" onclick="StartChat(<?= $user["id"] ?>)"></i>
+            <?php if($chatid != -1) { ?>
+            <i class="fas fa-users" onclick="AddToCurrentChat(<?= $user["id"] ?>)"></i>
+            <?php } ?>
         </span>
-        <?php } ?>
+        
     </span>
     <?php
 }

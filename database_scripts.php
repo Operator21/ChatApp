@@ -172,3 +172,15 @@ function IsChatMultiUser($chatid){
     }  
     return false;
 }
+
+function AddUserToGroup($userid, $chatid){
+    global $db;
+    $sql = $db->prepare("insert into user_in_chat values (?, ?)");
+    return $sql->execute([$chatid, $userid]);
+}
+
+function LeaveGroup($chatid){
+    global $db;
+    $sql = $db->prepare("delete from user_in_chat where chat_id = ? and user_id = ?");
+    return $sql->execute([$chatid, GetCurrentUserID()]);
+}

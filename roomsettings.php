@@ -1,0 +1,1 @@
+<span class="button" onclick="LeaveCurrentChat()">Opustit skupinu</span>

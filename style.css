@@ -54,7 +54,7 @@ section {
 	height: 85px;
 }
 .chatroom:hover {
-	background: var(--secondary);
+	background: var(--primary-light);
 	cursor: pointer;
 }
 .chatroom .fas {
@@ -62,10 +62,12 @@ section {
     font-size: x-large;
     text-align: center;
     height: max-content;
-    align-self: center;
 }
 .chatroom .fas:hover {
     color: var(--text);
+}
+.chatroom span {
+	align-self: center;
 }
 .chatlist {
 	color: var(--text);	
@@ -245,6 +247,9 @@ form h4 {
 header ::placeholder {
     color: var(--tertiary);
     opacity: 1;
+}
+.selected, .selected:hover {
+	background: var(--secondary);
 }
 @media (min-width: 1300px){
 	.message {

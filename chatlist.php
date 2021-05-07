@@ -27,6 +27,7 @@
         <div class="inputdiv">
             <span class="textfield"><textarea id="textarea"></textarea></span>
             <a href="#emojimenu" rel="modal:open"><i class="far fa-grin-alt"></i></a>
+            <a href="#roomsettings" rel="modal:open"><i class="fas fa-user-cog"></i></a>
         </div>
     </section>
 </main>
@@ -38,6 +39,11 @@
 ?>
 </div>
 <div id="userlist" class="modal"></div>
+<div id="roomsettings" class="modal">
+    <?php
+        include_once("roomsettings.php");
+    ?>
+</div>
 <form id="changeavatar" class="modal">
 <?php
     include_once("changeavatar.php");

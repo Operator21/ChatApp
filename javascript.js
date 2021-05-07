@@ -188,3 +188,39 @@ function SaveAvatar(){
         }    
     });
 }
+
+function AddToCurrentChat(userid){
+    chatid = GetParameter("chatid");
+    //alert(userid + " do chatu " + GetParameter("chatid"))
+    $.post("script_addtogroup.php", { 
+        chatid: chatid,
+        userid: userid
+    },
+    function(data){
+        if(data == 1){
+            ReloadPage();
+        } else {
+            alert("Uživatel už ve skupině je");
+        }
+    });
+}
+
+function GetParameter(name){
+    searchParams = new URLSearchParams(window.location.search)
+    return searchParams.get(name);
+}
+
+function GetParameterExists(name){
+    searchParams = new URLSearchParams(window.location.search)
+    return searchParams.has(name);
+}
+
+function LeaveCurrentChat(){
+    chatid = GetParameter("chatid");
+    $.post("script_leavegroup.php", { 
+        chatid: chatid
+    },
+    function(data){
+        window.location.replace("index.php");
+    });
+}

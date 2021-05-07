@@ -1,1 +1,1 @@
-<span class="button" onclick="LeaveCurrentChat()">Opustit skupinu</span>
+<span class="button" onclick="LeaveCurrentChat()">Opustit tento chat</span>

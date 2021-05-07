@@ -216,6 +216,10 @@ function GetParameterExists(name){
 }
 
 function LeaveCurrentChat(){
+    var result = confirm("Určitě? Tato operace nelze vrátit.");
+    if(!result){
+        return;
+    }
     chatid = GetParameter("chatid");
     $.post("script_leavegroup.php", { 
         chatid: chatid

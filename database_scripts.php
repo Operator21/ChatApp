@@ -95,7 +95,9 @@ function GetUserChatRooms(){
 function GetChatRoomMessages($chatid){
     global $db;
 
-    $sql = $db->prepare("SELECT * FROM message WHERE chat_id = ?");
+    $sql = $db->prepare("SELECT message.id AS message_id, user_id, chat_id, text, DATETIME, nick FROM message 
+        JOIN user ON user.id = user_id
+        WHERE chat_id = ?");
 
     $sql->execute([$chatid]);
     return $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -159,4 +161,14 @@ function GetChatAvatar($chatid){
         ORDER BY user.id asc LIMIT 1;");
     $sql->execute([GetCurrentUserID(), $chatid]);
     return $sql->fetch(PDO::FETCH_ASSOC)["avatar"];    
+}
+
+function IsChatMultiUser($chatid){
+    global $db;
+    $sql = $db->prepare("SELECT COUNT(*) as num FROM user_in_chat WHERE chat_id = ?;");
+    $sql->execute([$chatid]);
+    if($sql->fetch(PDO::FETCH_ASSOC)["num"] > 2){
+        return true;
+    }  
+    return false;
 }

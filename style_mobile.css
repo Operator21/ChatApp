@@ -1,4 +1,10 @@
 @media (max-width: 1000px){
+    #messagelist {
+        width: 100vw;
+    }
+    .message {
+        max-width: 60%;
+    }
     .welcome {
         width: 100%;
     }

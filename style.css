@@ -9,8 +9,8 @@ body {
 form input[type=submit] {
 	width: 30%;
 	margin: 0 auto;
-	background: #7F56C3;
-	color: white;
+	background: var(--primary);
+	color: var(--text);
 }
 form input {
 	display: block;
@@ -30,7 +30,7 @@ form input {
 }
 nav {
 	height: 100%;
-	background: #7F56C3;
+	background: var(--primary);
 	overflow-y: scroll;
 	scroll-behavior: smooth;	
 }
@@ -50,52 +50,74 @@ section {
 .chatroom {
 	display: grid;
 	padding: 10px;
-	grid-template-columns: 80px auto;
+	grid-template-columns: 80px auto 80px;
 	height: 85px;
 }
 .chatroom:hover {
-	background: #5F35A7;
+	background: var(--secondary);
 	cursor: pointer;
 }
+.chatroom .fas {
+    color: var(--primary);
+    font-size: x-large;
+    text-align: center;
+    height: max-content;
+    align-self: center;
+}
+.chatroom .fas:hover {
+    color: var(--text);
+}
 .chatlist {
-	color: white;	
+	color: var(--text);	
 }
 .chatroom h3 {
 	align-self: center;
 }
 i {
-	color: white;
+	color: var(--text);
 	transition-property: color;
 	transition-duration: 0.5s;
 }
 header {
-	background: #6D44BA;
+	background: var(--secondary);
 	height: 50px;
 	display: grid;
 	grid-template-columns: 40px auto 40px;
 }
 a {
-	color: #f2f2f2;
+	color: var(--white);
 	align-self: center;
 	text-align: center;
 	font-size: 24px;	
 }
 i:hover {
-	color: #a7a7a7;
+	color: var(--dark);
 	cursor: pointer;
 }
 .message {
 	display: block;
-	background: #7F56C3;
-	color: white;
+	background: var(--dark);	
+	color: var(--text);
 	width: max-content;
 	padding: 13px;
 	margin: 10px;
 	border-radius: 10px;
+	overflow: hidden;
+	max-width: 300px;
+	text-overflow: clip;
+	overflow-wrap: break-word;
 }
 .user {
+	display: block;
 	margin-right: 10px;
 	margin-left: auto;
+	background: var(--primary);
+}
+.nick {
+	background: none;
+	width: max-content;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 .messagelist {
 	overflow-y: scroll;
@@ -108,7 +130,7 @@ i:hover {
 .textfield {
 	padding: 10px;
 	display: block;
-	background: #cfb9f2;
+	background: var(--tertiary);
 }
 textarea {
 	-webkit-box-sizing: border-box;
@@ -124,14 +146,14 @@ textarea {
 #rightpanel div {
 	display: grid;
 	grid-template-columns: auto 40px 40px 10px;
-	background: #cfb9f2;
+	background: var(--tertiary);
 }
 #emojimenu span {
 	font-size: 24px;
 }
 #emojimenu span:hover {
 	cursor: pointer;
-	background: gray;
+	background: var(--primary);
 }
 .width-250 {
 	width: 250px;
@@ -148,7 +170,7 @@ textarea {
 }
 .welcome h1 {
 	font-size: 50px;
-	background: -webkit-linear-gradient(#9267d8, #6D44BA);
+	background: -webkit-linear-gradient(var(--primary), var(--secondary));
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
@@ -167,7 +189,7 @@ img {
 	align-self: center;
 	text-align: center;
 	font-size: 24px;
-	background: #7F56C3;
+	background: var(--primary);
 	text-decoration: none;
 	padding: 10px;
 	display: block;
@@ -177,7 +199,7 @@ img {
 	transition-duration: 0.5s;	
 }
 .button:hover{
-	background: #9167d6;
+	background: var(--primary-light);
 	cursor: pointer;
 }
 footer {
@@ -208,15 +230,24 @@ form h4 {
 	margin-top: 20px;
 }
 #usersearch {
-	background: #7752bd;
+	background: var(--primary);
 	border: 0;
 	font-size: 20px;
 	margin-top: 10px;
 	margin-bottom: 10px;
-	color: white;
+	color: var(--text);
 	padding-left: 7px;
 }
 .signindiv {
 	margin-top: 40px;
 	width: 250px;
+}
+header ::placeholder {
+    color: var(--tertiary);
+    opacity: 1;
+}
+@media (min-width: 1300px){
+	.message {
+		max-width: 500px;
+	}
 }

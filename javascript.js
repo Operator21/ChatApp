@@ -125,10 +125,17 @@ function ResetInputs(){
 
 function SearchUsers(){
     input = $("#usersearch").val();
+    searchParams = new URLSearchParams(window.location.search)
+    chatid = -1;
+    if(searchParams.has("chatid")){
+        chatid = searchParams.get("chatid");
+        //alert(chatid);
+    }
     //input.length
     if(input != ""){
         $.post("script_search.php", {
-            search: input
+            search: input,
+            chatid: chatid
         },
         function(data) {
             //alert(data);   

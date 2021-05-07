@@ -29,6 +29,8 @@ function PageHeader($title = "Nadpis stránky"){
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
             <!-- Page title in  format of *Current Page | ChatApp* -->           
             <title><?= $title ?> | ChatApp</title>
+            <!-- Color Palette -->
+            <link rel="stylesheet" href="colors/default.css">
             <!-- General style file -->
             <link rel="stylesheet" href="style.css">
             <!-- Mobile style file -->
@@ -60,20 +62,30 @@ function ChatRoom($id = 0, $name = "", $photo= ""){
     </span>
     <?php
 }
-function UserProfile($user){ 
+function UserProfile($user, $chatid){ 
     ?>
     <span class="chatroom" onclick="StartChat(<?= $user["id"] ?>)">
         <img class="chatphoto" src="<?= $user["avatar"] ?>">
         <h3><?= $user["nick"] ?></h3>
+        <?php if($chatid != -1) { ?>
+        <span>
+            <i class="fas fa-user-plus"></i>
+        </span>
+        <?php } ?>
     </span>
     <?php
 }
-function Message($currentuser = null, $user = null, $content = null){
+function Message($currentuser, $user, $content, $nick, $multiuser = false){
     $class = "message";
+    $nick_class = "nick";
     if($currentuser != null && $user == $currentuser){
         $class .= " user";
+    } else {
+        if($multiuser) {
+            ?><span class="<?= $nick_class ?>"><?= $nick ?></span><?php
+        }
     }
-    ?>
+    ?>   
     <span class="<?= $class ?>"><?= $content ?></span>
     <?php
 }

@@ -6,6 +6,10 @@ require_once("connection.php");
 require_once("template_scripts.php");
 $users = GetUsersLike($_POST["search"]);
 //print_r($users);
+$chatselected = -1;
+if(isset($_POST["chatid"])){
+    $chatselected = $_POST["chatid"];
+}
 foreach($users as $user){
-    UserProfile($user);
+    UserProfile($user, $chatselected);
 }

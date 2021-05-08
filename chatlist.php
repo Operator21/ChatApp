@@ -27,7 +27,9 @@
         <div class="inputdiv">
             <span class="textfield"><textarea id="textarea"></textarea></span>
             <a href="#emojimenu" rel="modal:open"><i class="far fa-grin-alt"></i></a>
-            <a href="#roomsettings" rel="modal:open"><i class="fas fa-user-cog"></i></a>
+            <?php if(isset($_GET["chatid"])) { ?>
+                <a href="#roomsettings" rel="modal:open"><i class="fas fa-user-cog"></i></a>
+            <?php } ?>
         </div>
     </section>
 </main>
@@ -51,8 +53,7 @@
 </form>
 <script>
     $("#rightpanel").ready(function() {
-        let searchParams = new URLSearchParams(window.location.search)
-        if(searchParams.has("chatid")){
+        if(GetParameterExists("chatid")){
             ScrollToBottom("#rightpanel");
             $('#textarea').focus();
         }
@@ -63,11 +64,15 @@
         if(event.which == 13){
             event.preventDefault(); 
             if($("#textarea").val() != ""){
-                let searchParams = new URLSearchParams(window.location.search)
-                //alert(searchParams.get("chatid") + " / " + $("#textarea").val());
-                SendMessage(searchParams.get("chatid"), $("#textarea").val());   
+                SendMessage(GetParameter("chatid"), $("#textarea").val());   
                 RefreshMessages();
             }
+        }
+    });
+    $("#usersearch").keydown(function(event){
+        if(event.which == 13){
+            event.preventDefault(); 
+            SearchUsers();
         }
     });
 

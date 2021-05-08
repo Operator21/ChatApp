@@ -42,6 +42,13 @@ function GetCurrentUserID(){
     return null;
 }
 
+function IsLogged(){
+    if(isset($_SESSION["user"])){
+        return true;
+    }
+    return false;
+}
+
 function GetAllChatRoomsWithoutCurrentUser(){
     global $db;
     $sql = $db->prepare("SELECT userchat.chat_id, GROUP_CONCAT(user.nick ORDER BY user.nick SEPARATOR ', ') AS users 
@@ -183,4 +190,17 @@ function LeaveGroup($chatid){
     global $db;
     $sql = $db->prepare("delete from user_in_chat where chat_id = ? and user_id = ?");
     return $sql->execute([$chatid, GetCurrentUserID()]);
+}
+
+function GetTheme(){
+    if(IsLogged()){
+        return GetCurrentUser()["theme"];
+    }
+    return "default.css";
+}
+
+function ChangeTheme($theme){
+    global $db;
+    $sql = $db->prepare("update user set theme = ? where id = ?");
+    return $sql->execute([$theme, GetCurrentUserID()]);
 }

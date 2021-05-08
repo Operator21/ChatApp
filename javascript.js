@@ -228,3 +228,14 @@ function LeaveCurrentChat(){
         window.location.replace("index.php");
     });
 }
+
+function ChangeTheme(){
+    //alert($("#themeselector").val());
+    theme = $("#themeselector").val();
+    $.post("script_changetheme.php", {
+        theme: theme
+    },
+    function(data){
+        ReloadPage();
+    });
+}

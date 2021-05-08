@@ -31,7 +31,8 @@ function PageHeader($title = "Nadpis stránky"){
             <title><?= $title ?> | ChatApp</title>
             <!-- Color Palette -->
             <!-- <link rel="stylesheet" href="colors/default.css"> -->
-            <link rel="stylesheet" href="colors/sienna.css">
+            <!--<link rel="stylesheet" href="colors/sienna.css">-->
+            <link rel="stylesheet" href="colors/<?= GetTheme() ?>">
             <!-- General style file -->
             <link rel="stylesheet" href="style.css">
             <!-- Mobile style file -->
@@ -96,4 +97,20 @@ function Message($currentuser, $user, $content, $nick, $multiuser = false){
     ?>   
     <span class="<?= $class ?>"><?= $content ?></span>
     <?php
+}
+
+function WriteTheme($file){
+    $userfriendly = explode(".", $file)[0];
+    ?><option value="<?= $file ?>"><?= $userfriendly ?></option><?php
+}
+
+function GenerateThemeSelection(){
+    $files = array_diff(scandir("colors"), array('.', '..'));
+    $currentTheme = GetTheme();
+    WriteTheme($currentTheme);
+    foreach($files as $color){
+        if($color != $currentTheme){
+            WriteTheme($color);
+        }
+    }
 }

@@ -54,8 +54,8 @@
 <script>
     $("#rightpanel").ready(function() {
         if(GetParameterExists("chatid")){
-            $('#textarea').focus();
             ScrollToBottom("#rightpanel");            
+            $('#textarea').focus();
         }
         EmojiMenu();
     });  
